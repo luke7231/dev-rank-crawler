@@ -4,9 +4,15 @@ const https = require("https");
 const { Builder, By, Key, until } = require("selenium-webdriver");
 
 const run = async (searchWord, scroll) => {
-  const service = new chrome.ServiceBuilder("./chromedriver.exe").build();
-  chrome.setDefaultService(service);
-  const driver = await new Builder().forBrowser("chrome").build();
+  // const service = new chrome.ServiceBuilder("./chromedriver").build();
+  let service = new chrome.ServiceBuilder()
+    .loggingTo("./chromedriver.exe")
+    .enableVerboseLogging()
+    .build();
+  // chrome.DefaultService(service);
+  // const driver = await new Builder().forBrowser("chrome").build();
+  let options = new chrome.Options();
+  let driver = chrome.Driver.createSession(options, service);
 
   // Direct move to image search page (save google main page to input search time)
   const url = "https://www.google.com/search?q=";
@@ -65,4 +71,4 @@ const run = async (searchWord, scroll) => {
 
 // First variable : search word
 // Second variable : num of scroll (I think 250 is enough.)
-run("dog", 250);
+run("다시 복음 앞에 악보", 0);
