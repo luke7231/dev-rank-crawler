@@ -17,21 +17,25 @@ const run = async () => {
     1000
   );
 
-  const disqRankingTop5 = (
-    await driver.findElements(By.className("sc-eHVZpS eXozIH"))
-  ).slice(0, 5);
-  console.log(disqRankingTop5);
+  // const disqRankingTop5 = (
+  //   await driver.findElements(By.className("sc-eHVZpS eXozIH"))
+  // ).slice(0, 5);
+  const disqRankingTop5 = await driver
+    .findElement(By.className("links-wrapper"))
+    .findElements(By.xpath(".//a[starts-with(@href,'/product')]"));
+  console.log(disqRankingTop5.length);
   const TitleAndLinks = await Promise.all(
-    disqRankingTop5.map(async (tag) => {
-      const title = await tag.findElement(By.className("name")).getText();
-      //   const link = await tag.findElement(By.tagName("a")).getAttribute("href");
+    disqRankingTop5.map(async (tag, index) => {
+      // const title = await tag.findElement(By.className("name")).getText();
+      const title = await tag
+        .findElement(By.xpath("./div[1]/div[3]/div[1]"))
+        .getText();
       const link = await tag.getAttribute("href");
-      return { title, link };
+      return { rank: index + 1, title, link };
     })
   );
   console.log(TitleAndLinks);
 
-  console.log("total count : " + TitleAndLinks.length);
   driver.quit();
 };
 
