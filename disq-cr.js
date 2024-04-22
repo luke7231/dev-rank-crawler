@@ -14,7 +14,7 @@ const run = async () => {
 
   await driver.wait(
     until.elementLocated(By.className("sc-eHVZpS eXozIH")),
-    1000
+    2000
   );
 
   // const disqRankingTop5 = (
@@ -26,11 +26,15 @@ const run = async () => {
 
   const result = await Promise.all(
     disqRankingTop5.slice(0, 5).map(async (element, index) => {
+      const imgProperty = await element
+        .findElement(By.xpath("./div[1]/div[2]"))
+        .getCssValue("background-image");
+      const imgUrl = imgProperty.match(/\bhttps?:\/\/\S+/i)[0];
       const title = await element
         .findElement(By.xpath("./div[1]/div[3]/div[1]"))
         .getText();
       const link = await element.getAttribute("href");
-      return { rank: index + 1, title, link };
+      return { rank: index + 1, icon: imgUrl, title, link };
     })
   );
   console.log(result);
