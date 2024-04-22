@@ -17,18 +17,17 @@ const run = async () => {
   ).slice(0, 5);
 
   const TitleAndLinks = await Promise.all(
-    hakerRankingTop5.map(async (tag) => {
+    hakerRankingTop5.map(async (tag, index) => {
       const title = await tag.findElement(By.className("titleline")).getText();
       const link = await tag
         .findElement(By.className("titleline"))
         .findElement(By.tagName("a"))
         .getAttribute("href");
-      return { title, link };
+      return { rank: index + 1, title, link };
     })
   );
   console.log(TitleAndLinks);
 
-  console.log("total count : " + TitleAndLinks);
   driver.quit();
 };
 

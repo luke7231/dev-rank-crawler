@@ -17,13 +17,13 @@ const run = async () => {
   ).slice(0, 5);
 
   const TitleAndLinks = await Promise.all(
-    geekRankingTop5.map(async (tag) => {
+    geekRankingTop5.map(async (tag, index) => {
       const title = await tag.findElement(By.className("topictitle")).getText();
       const link = await tag
         .findElement(By.className("topictitle"))
         .findElement(By.tagName("a"))
         .getAttribute("href");
-      return { title, link };
+      return { rank: index + 1, title, link };
     })
   );
   console.log(TitleAndLinks);
