@@ -23,14 +23,13 @@ const run = async () => {
   const disqRankingTop5 = await driver
     .findElement(By.className("links-wrapper"))
     .findElements(By.xpath(".//a[starts-with(@href,'/product')]"));
-  console.log(disqRankingTop5.length);
+
   const TitleAndLinks = await Promise.all(
-    disqRankingTop5.map(async (tag, index) => {
-      // const title = await tag.findElement(By.className("name")).getText();
-      const title = await tag
+    disqRankingTop5.slice(0, 5).map(async (element, index) => {
+      const title = await element
         .findElement(By.xpath("./div[1]/div[3]/div[1]"))
         .getText();
-      const link = await tag.getAttribute("href");
+      const link = await element.getAttribute("href");
       return { rank: index + 1, title, link };
     })
   );

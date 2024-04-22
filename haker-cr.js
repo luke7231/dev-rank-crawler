@@ -17,9 +17,11 @@ const run = async () => {
   ).slice(0, 5);
 
   const TitleAndLinks = await Promise.all(
-    hakerRankingTop5.map(async (tag, index) => {
-      const title = await tag.findElement(By.className("titleline")).getText();
-      const link = await tag
+    hakerRankingTop5.map(async (element, index) => {
+      const title = await element
+        .findElement(By.className("titleline"))
+        .getText();
+      const link = await element
         .findElement(By.className("titleline"))
         .findElement(By.tagName("a"))
         .getAttribute("href");

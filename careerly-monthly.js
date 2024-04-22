@@ -17,11 +17,11 @@ const run = async () => {
   );
 
   const TitleAndLinks = await Promise.all(
-    careerlyTop5.map(async (tag, index) => {
-      const title = await tag
+    careerlyTop5.map(async (element, index) => {
+      const title = await element
         .findElement(By.tagName("span")) // span이 잘 걸침.
         .getText();
-      const link = await tag.getAttribute("href");
+      const link = await element.getAttribute("href");
       return { rank: index + 1, title, link };
     })
   );
