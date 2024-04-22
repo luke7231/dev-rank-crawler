@@ -24,7 +24,7 @@ const run = async () => {
     .findElement(By.className("links-wrapper"))
     .findElements(By.xpath(".//a[starts-with(@href,'/product')]"));
 
-  const TitleAndLinks = await Promise.all(
+  const result = await Promise.all(
     disqRankingTop5.slice(0, 5).map(async (element, index) => {
       const title = await element
         .findElement(By.xpath("./div[1]/div[3]/div[1]"))
@@ -33,7 +33,7 @@ const run = async () => {
       return { rank: index + 1, title, link };
     })
   );
-  console.log(TitleAndLinks);
+  console.log(result);
 
   driver.quit();
 };

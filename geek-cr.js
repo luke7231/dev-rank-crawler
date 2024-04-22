@@ -16,7 +16,7 @@ const run = async () => {
     await driver.findElements(By.className("topic_row"))
   ).slice(0, 5);
 
-  const TitleAndLinks = await Promise.all(
+  const result = await Promise.all(
     geekRankingTop5.map(async (element, index) => {
       const title = await element
         .findElement(By.className("topictitle"))
@@ -28,9 +28,9 @@ const run = async () => {
       return { rank: index + 1, title, link };
     })
   );
-  console.log(TitleAndLinks);
+  console.log(result);
 
-  console.log("total count : " + TitleAndLinks.length);
+  console.log("total count : " + result.length);
   driver.quit();
 };
 

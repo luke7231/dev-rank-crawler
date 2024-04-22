@@ -15,7 +15,7 @@ const run = async () => {
   const EO컨테이너3개 = await driver
     .findElement(By.className("popular-article-container"))
     .findElements(By.className("swiper-slide"));
-  const TL = [];
+  const result = [];
   for (let container of EO컨테이너3개) {
     // 각 컨테이너 당
     const 각탑3 = await container.findElements(
@@ -34,11 +34,11 @@ const run = async () => {
           title,
           link,
         };
-        TL.push(con);
+        result.push(con);
       })
     );
   }
-  console.log(TL);
+  console.log(result);
 
   //   const TitleAndLinks = await Promise.all(
   //     EORankingTop5.map(async (tag) => {

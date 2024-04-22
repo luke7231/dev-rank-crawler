@@ -16,7 +16,7 @@ const run = async () => {
     By.xpath("//a[starts-with(@href, '/comments')]")
   );
 
-  const TitleAndLinks = await Promise.all(
+  const result = await Promise.all(
     careerlyTop5.map(async (element, index) => {
       const title = await element
         .findElement(By.tagName("span")) // span이 잘 걸침.
@@ -25,7 +25,7 @@ const run = async () => {
       return { rank: index + 1, title, link };
     })
   );
-  console.log(TitleAndLinks);
+  console.log(result);
 
   //   console.log("total count : " + TitleAndLinks.length);
   driver.quit();

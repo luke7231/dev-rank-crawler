@@ -15,7 +15,7 @@ const run = async () => {
   const weeklyTop5 = await driver.findElements(
     By.xpath("//a[starts-with(@href, '/comments') and starts-with(@rel, 'no')]")
   );
-  const TitleAndLinks = await Promise.all(
+  const result = await Promise.all(
     weeklyTop5.slice(0, 5).map(async (element, index) => {
       const title = await element
         .findElement(By.xpath("./div[1]/div[2]/p"))
@@ -24,7 +24,7 @@ const run = async () => {
       return { rank: index + 1, title, link };
     })
   );
-  console.log(TitleAndLinks);
+  console.log(result);
   driver.quit();
 };
 
