@@ -1,7 +1,7 @@
 const chrome = require("selenium-webdriver/chrome");
 const { By, until } = require("selenium-webdriver");
 
-const run = async () => {
+const disquiet = async () => {
   let service = new chrome.ServiceBuilder()
     .loggingTo("./chromedriver.exe")
     .enableVerboseLogging()
@@ -12,10 +12,7 @@ const run = async () => {
   const url = "https://disquiet.io/";
   await driver.get(url);
 
-  await driver.wait(
-    until.elementLocated(By.className("sc-eHVZpS eXozIH")),
-    2000
-  );
+  await driver.wait(until.elementLocated(By.className("links-wrapper")), 2000);
 
   // const disqRankingTop5 = (
   //   await driver.findElements(By.className("sc-eHVZpS eXozIH"))
@@ -37,11 +34,12 @@ const run = async () => {
       return { rank: index + 1, icon: imgUrl, title, link };
     })
   );
-  console.log(result);
+  console.log("disquiet complete.");
 
-  driver.quit();
+  // driver.quit();
+  return result;
 };
 
-run();
+module.exports = disquiet;
 
 // 안 될 때가 있다 음 리액트라 그런가

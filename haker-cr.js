@@ -1,7 +1,7 @@
 const chrome = require("selenium-webdriver/chrome");
 const { By } = require("selenium-webdriver");
 
-const run = async () => {
+const hakerNews = async () => {
   let service = new chrome.ServiceBuilder()
     .loggingTo("./chromedriver.exe")
     .enableVerboseLogging()
@@ -28,9 +28,8 @@ const run = async () => {
       return { rank: index + 1, title, link };
     })
   );
-  console.log(result);
 
-  driver.quit();
+  // driver.quit();
+  return result;
 };
-
-run();
+module.exports = hakerNews;

@@ -1,7 +1,7 @@
 const chrome = require("selenium-webdriver/chrome");
 const { By } = require("selenium-webdriver");
 
-const run = async () => {
+const productHunt = async () => {
   let service = new chrome.ServiceBuilder()
     .loggingTo("./chromedriver.exe")
     .enableVerboseLogging()
@@ -19,7 +19,7 @@ const run = async () => {
     By.xpath("//img[starts-with(@class, 'styles_mediaThumbnail')]")
   );
   //   console.log(careerlyTop5);
-  const TitleAndLinks = await Promise.all(
+  const result = await Promise.all(
     productHuntTop5.slice(0, 5).map(async (tag, index) => {
       const title = await tag
         .findElement(By.tagName("strong")) // strong 을 쓰더라.
@@ -35,10 +35,11 @@ const run = async () => {
       };
     })
   );
-  console.log(TitleAndLinks);
+  console.log(result);
 
-  //   console.log("total count : " + TitleAndLinks.length);
-  driver.quit();
+  //   console.log("total count : " + result.length);
+  // driver.quit();
+  return result;
 };
 
-run();
+module.exports = productHunt;

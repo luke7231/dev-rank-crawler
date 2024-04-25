@@ -1,7 +1,7 @@
 const chrome = require("selenium-webdriver/chrome");
 const { By } = require("selenium-webdriver");
 
-const run = async () => {
+const careerlyWeekly = async () => {
   let service = new chrome.ServiceBuilder()
     .loggingTo("./chromedriver.exe")
     .enableVerboseLogging()
@@ -24,8 +24,8 @@ const run = async () => {
       return { rank: index + 1, title, link };
     })
   );
-  console.log(result);
-  driver.quit();
-};
+  console.log("careerly-weekly complete");
 
-run();
+  return result;
+};
+module.exports = careerlyWeekly;

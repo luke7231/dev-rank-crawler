@@ -1,7 +1,7 @@
 const chrome = require("selenium-webdriver/chrome");
 const { By } = require("selenium-webdriver");
 
-const run = async () => {
+const eo = async () => {
   let service = new chrome.ServiceBuilder()
     .loggingTo("./chromedriver.exe")
     .enableVerboseLogging()
@@ -38,7 +38,6 @@ const run = async () => {
       })
     );
   }
-  console.log(result);
 
   //   const TitleAndLinks = await Promise.all(
   //     EORankingTop5.map(async (tag) => {
@@ -53,7 +52,7 @@ const run = async () => {
   //   console.log(TitleAndLinks);
 
   //   console.log("total count : " + TitleAndLinks.length);
-  driver.quit();
+  // driver.quit();
+  return result;
 };
-
-run();
+module.exports = eo;

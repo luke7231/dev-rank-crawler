@@ -1,7 +1,7 @@
 const chrome = require("selenium-webdriver/chrome");
 const { By } = require("selenium-webdriver");
 
-const run = async () => {
+const careerlyMonthly = async () => {
   let service = new chrome.ServiceBuilder()
     .loggingTo("./chromedriver.exe")
     .enableVerboseLogging()
@@ -17,7 +17,7 @@ const run = async () => {
   );
 
   const result = await Promise.all(
-    careerlyTop5.map(async (element, index) => {
+    careerlyTop5.slice(0, 5).map(async (element, index) => {
       const title = await element
         .findElement(By.tagName("span")) // span이 잘 걸침.
         .getText();
@@ -25,10 +25,10 @@ const run = async () => {
       return { rank: index + 1, title, link };
     })
   );
-  console.log(result);
 
-  //   console.log("total count : " + TitleAndLinks.length);
-  driver.quit();
+  console.log("careerly-monthly complete");
+  // driver.quit();
+
+  return result;
 };
-
-run();
+module.exports = careerlyMonthly;

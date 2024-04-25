@@ -1,7 +1,7 @@
 const chrome = require("selenium-webdriver/chrome");
 const { By } = require("selenium-webdriver");
 
-const run = async () => {
+const geek = async () => {
   let service = new chrome.ServiceBuilder()
     .loggingTo("./chromedriver.exe")
     .enableVerboseLogging()
@@ -28,10 +28,11 @@ const run = async () => {
       return { rank: index + 1, title, link };
     })
   );
-  console.log(result);
 
-  console.log("total count : " + result.length);
-  driver.quit();
+  console.log("geek complete.");
+  // driver.quit();
+
+  return result;
 };
 
-run();
+module.exports = geek;
