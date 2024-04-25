@@ -12,7 +12,7 @@ const productHunt = async () => {
   const url = "https://www.producthunt.com/";
   await driver.get(url);
 
-  const productHuntTop5 = await driver.findElements(
+  const productHuntTop20 = await driver.findElements(
     By.xpath("//div[starts-with(@class,'styles_titleContainer')]")
   );
   const productHuntThumbnails = await driver.findElements(
@@ -20,7 +20,7 @@ const productHunt = async () => {
   );
   //   console.log(careerlyTop5);
   const result = await Promise.all(
-    productHuntTop5.slice(0, 5).map(async (tag, index) => {
+    productHuntTop20.slice(0, 20).map(async (tag, index) => {
       const title = await tag
         .findElement(By.tagName("strong")) // strong 을 쓰더라.
         .getText();
@@ -38,7 +38,7 @@ const productHunt = async () => {
   console.log(result);
 
   //   console.log("total count : " + result.length);
-  // driver.quit();
+  driver.quit();
   return result;
 };
 

@@ -12,9 +12,7 @@ const hakerNews = async () => {
   const url = "https://news.ycombinator.com/";
   await driver.get(url);
 
-  const hakerRankingTop5 = (
-    await driver.findElements(By.className("athing"))
-  ).slice(0, 5);
+  const hakerRankingTop5 = await driver.findElements(By.className("athing"));
 
   const result = await Promise.all(
     hakerRankingTop5.map(async (element, index) => {
@@ -29,7 +27,7 @@ const hakerNews = async () => {
     })
   );
 
-  // driver.quit();
+  driver.quit();
   return result;
 };
 module.exports = hakerNews;

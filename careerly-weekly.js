@@ -12,11 +12,11 @@ const careerlyWeekly = async () => {
   const url = "https://careerly.co.kr/comments/1";
   await driver.get(url);
 
-  const weeklyTop5 = await driver.findElements(
+  const weeklyTop10 = await driver.findElements(
     By.xpath("//a[starts-with(@href, '/comments') and starts-with(@rel, 'no')]")
   );
   const result = await Promise.all(
-    weeklyTop5.slice(0, 5).map(async (element, index) => {
+    weeklyTop10.map(async (element, index) => {
       const title = await element
         .findElement(By.xpath("./div[1]/div[2]/p"))
         .getText();
@@ -25,6 +25,7 @@ const careerlyWeekly = async () => {
     })
   );
   console.log("careerly-weekly complete");
+  driver.quit();
 
   return result;
 };

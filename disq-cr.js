@@ -36,7 +36,7 @@ const disquiet = async () => {
   );
   console.log("disquiet complete.");
 
-  // driver.quit();
+  driver.quit();
   return result;
 };
 

@@ -12,9 +12,7 @@ const geek = async () => {
   const url = "https://news.hada.io/";
   await driver.get(url);
 
-  const geekRankingTop5 = (
-    await driver.findElements(By.className("topic_row"))
-  ).slice(0, 5);
+  const geekRankingTop5 = await driver.findElements(By.className("topic_row"));
 
   const result = await Promise.all(
     geekRankingTop5.map(async (element, index) => {
@@ -30,7 +28,7 @@ const geek = async () => {
   );
 
   console.log("geek complete.");
-  // driver.quit();
+  driver.quit();
 
   return result;
 };

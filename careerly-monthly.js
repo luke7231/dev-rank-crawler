@@ -12,12 +12,12 @@ const careerlyMonthly = async () => {
   const url = "https://careerly.co.kr/trends";
   await driver.get(url);
 
-  const careerlyTop5 = await driver.findElements(
+  const careerlyTop20 = await driver.findElements(
     By.xpath("//a[starts-with(@href, '/comments')]")
   );
 
   const result = await Promise.all(
-    careerlyTop5.slice(0, 5).map(async (element, index) => {
+    careerlyTop20.map(async (element, index) => {
       const title = await element
         .findElement(By.tagName("span")) // span이 잘 걸침.
         .getText();
@@ -27,7 +27,7 @@ const careerlyMonthly = async () => {
   );
 
   console.log("careerly-monthly complete");
-  // driver.quit();
+  driver.quit();
 
   return result;
 };
