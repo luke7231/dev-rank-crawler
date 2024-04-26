@@ -12,42 +12,49 @@ const combineAndSaveResults = async () => {
   // 결과를 모으는 작업
   const combinedResults = [
     {
+      key: "careerly-w",
       title: "Careerly TOP5 (Weekly)",
       img: "/careerly.png",
       link: "https://careerly.co.kr/",
       contents: await careerlyWeekly(),
     },
     {
+      key: "hakerNews",
       title: "HakerNews TOP5",
       img: "/y-combinator.png",
       link: "https://news.ycombinator.com/",
       contents: await hakerNews(),
     },
     {
+      key: "geekNews",
       title: "GeekNews TOP5",
       img: "/geeknews.png",
       link: "https://news.hada.io/",
       contents: await geek(),
     },
     {
+      key: "disquiet",
       title: "Trending product TOP5 (국내)",
       img: "/disquiet.jpeg",
       link: "https://disquiet.io/",
       contents: await disquiet(),
     },
     {
+      key: "careerly-m",
       title: "Careerly Top5 (Monthly)",
       img: "/careerly.png",
       link: "https://careerly.co.kr/",
       contents: await careerlyMonthly(),
     },
     {
+      key: "productHunt",
       title: "Trending Product TOP5 (글로벌)",
       img: "/product-hunt.png",
       link: "https://www.producthunt.com/",
       contents: await productHunt(),
     },
     {
+      key: "server",
       title: "오늘의 SERVER",
       contents: [
         {
@@ -74,6 +81,7 @@ const combineAndSaveResults = async () => {
       ],
     },
     {
+      key: "web",
       title: "오늘의 WEB",
       contents: [
         {
